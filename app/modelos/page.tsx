@@ -31,7 +31,7 @@ const models = [
       "Instalación sencilla",
       "Garantía de 1 año",
     ],
-    image: "/placeholder-lfd1y.png",
+    image: "/ruedatec-basico-model.png",
     color: "blue",
   },
   {
@@ -49,7 +49,7 @@ const models = [
       "Sensores inteligentes",
       "Garantía de 2 años",
     ],
-    image: "/solar-electric-wheelchair.png",
+    image: "/ruedatec-solar-model.jpeg",
     color: "indigo",
   },
 ]
@@ -201,15 +201,15 @@ export default function ModelosPage() {
                     transition={{ duration: 0.5 }}
                     className="order-1 md:order-2"
                   >
-                    <div className="relative rounded-2xl overflow-hidden group">
+                    <div className="relative rounded-2xl overflow-hidden group bg-gradient-to-br from-gray-100 to-gray-200 p-8">
                       <Image
                         src={model.image || "/placeholder.svg"}
-                        alt={model.name}
+                        alt={`${model.name} - Sistema de conversión para silla de ruedas`}
                         width={600}
                         height={400}
-                        className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   </motion.div>
                 </div>
