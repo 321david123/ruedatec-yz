@@ -97,7 +97,16 @@ export default function Home() {
                   Siempre estamos al tanto de una aportación/punto de vista, ya que este dispositivo esta 100% orientado
                   a la experiencia del usuario
                 </p>
-                <Button variant="ghost" className="text-orange-500 hover:text-orange-400 p-0 self-start">
+                <Button
+                  variant="ghost"
+                  className="text-orange-500 hover:text-orange-400 p-0 self-start"
+                  onClick={() =>
+                    window.open(
+                      "mailto:yo@davidmtz.me?subject=Apoyo%20a%20RuedaTec&body=Hola,%20me%20interesa%20apoyar%20el%20proyecto%20RuedaTec.",
+                      "_blank",
+                    )
+                  }
+                >
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Card>
@@ -114,7 +123,11 @@ export default function Home() {
                 <h4 className="text-2xl font-bold mb-4 text-white">Explora lo que creamos</h4>
                 <p className="text-gray-300 mb-4">Historia</p>
                 <p className="text-gray-300 mb-6 flex-grow">Revisa lo que hacemos</p>
-                <Button variant="ghost" className="text-cyan-500 hover:text-cyan-400 p-0 self-start">
+                <Button
+                  variant="ghost"
+                  className="text-cyan-500 hover:text-cyan-400 p-0 self-start"
+                  onClick={() => (window.location.href = "/conocenos")}
+                >
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Card>
@@ -132,7 +145,11 @@ export default function Home() {
                 <p className="text-gray-300 mb-6 flex-grow">
                   Nos darás y te darás la oportunidad de poder subir de nivel
                 </p>
-                <Button variant="ghost" className="text-purple-500 hover:text-purple-400 p-0 self-start">
+                <Button
+                  variant="ghost"
+                  className="text-purple-500 hover:text-purple-400 p-0 self-start"
+                  onClick={() => (window.location.href = "/contactanos")}
+                >
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Card>
@@ -148,7 +165,16 @@ export default function Home() {
                 <h3 className="text-xl font-semibold mb-4 text-white">Mejoras</h3>
                 <h4 className="text-2xl font-bold mb-4 text-white">Puedes aportar algo?</h4>
                 <p className="text-gray-300 mb-6 flex-grow">Contáctanos y ayudanos a poder ser mejores</p>
-                <Button variant="ghost" className="text-green-500 hover:text-green-400 p-0 self-start">
+                <Button
+                  variant="ghost"
+                  className="text-green-500 hover:text-green-400 p-0 self-start"
+                  onClick={() =>
+                    window.open(
+                      "mailto:yo@davidmtz.me?subject=Sugerencias%20para%20RuedaTec&body=Hola,%20tengo%20algunas%20sugerencias%20para%20mejorar%20RuedaTec.",
+                      "_blank",
+                    )
+                  }
+                >
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Card>
@@ -166,7 +192,16 @@ export default function Home() {
                 <p className="text-gray-300 mb-6 flex-grow">
                   Descubre el progreso de nuestro desarrollo y las próximas innovaciones
                 </p>
-                <Button variant="ghost" className="text-yellow-500 hover:text-yellow-400 p-0 self-start">
+                <Button
+                  variant="ghost"
+                  className="text-yellow-500 hover:text-yellow-400 p-0 self-start"
+                  onClick={() => {
+                    const gallerySection = document.querySelector('[data-section="gallery"]')
+                    if (gallerySection) {
+                      gallerySection.scrollIntoView({ behavior: "smooth" })
+                    }
+                  }}
+                >
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Card>
@@ -196,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6" data-section="gallery">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

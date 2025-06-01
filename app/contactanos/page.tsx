@@ -120,8 +120,8 @@ export default function ContactanosPage() {
                 <div className="flex items-start gap-4">
                   <MessageCircle className="w-6 h-6 text-blue-500 mt-1" />
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Respuesta rápida</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-lg font-semibold mb-2 text-white">Respuesta rápida</h3>
+                    <p className="text-white">
                       Nuestro equipo se compromete a responder todas las consultas dentro de las 24 horas durante días
                       laborales.
                     </p>
@@ -133,8 +133,8 @@ export default function ContactanosPage() {
                 <div className="flex items-start gap-4">
                   <MapPin className="w-6 h-6 text-green-500 mt-1" />
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Ubicación</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-lg font-semibold mb-2 text-white">Ubicación</h3>
+                    <p className="text-white">
                       Basados en México, ofrecemos soporte y servicios a nivel nacional con planes de expansión
                       internacional.
                     </p>
@@ -146,8 +146,8 @@ export default function ContactanosPage() {
                 <div className="flex items-start gap-4">
                   <HeadphonesIcon className="w-6 h-6 text-purple-500 mt-1" />
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Soporte especializado</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-lg font-semibold mb-2 text-white">Soporte especializado</h3>
+                    <p className="text-white">
                       Nuestro equipo técnico está capacitado para resolver cualquier duda sobre instalación,
                       mantenimiento y uso de nuestros productos.
                     </p>

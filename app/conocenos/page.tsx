@@ -41,13 +41,13 @@ export default function ConocenosPage() {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl font-bold mb-6">Nuestra Misión</h2>
-              <p className="text-gray-300 mb-6 text-lg">
+              <h2 className="text-3xl font-bold mb-6 text-white">Nuestra Misión</h2>
+              <p className="text-white mb-6 text-lg">
                 En RuedaTec, creemos que la movilidad es un derecho fundamental. Nuestra misión es democratizar el
                 acceso a la tecnología de asistencia, convirtiendo sillas de ruedas manuales en sistemas eléctricos
                 inteligentes y sostenibles.
               </p>
-              <p className="text-gray-300 mb-8">
+              <p className="text-white mb-8">
                 Trabajamos cada día para eliminar las barreras de movilidad y crear un mundo más inclusivo, donde la
                 independencia y la libertad de movimiento estén al alcance de todos.
               </p>
@@ -81,8 +81,8 @@ export default function ConocenosPage() {
             >
               <div className="relative rounded-2xl overflow-hidden">
                 <Image
-                  src="/placeholder-sk1t9.png"
-                  alt="Equipo RuedaTec trabajando"
+                  src="/ruedatec-team-with-user.jpeg"
+                  alt="Equipo RuedaTec trabajando con usuario real en pruebas de campo"
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover"
@@ -103,8 +103,8 @@ export default function ConocenosPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Nuestros Logros</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Nuestros Logros</h2>
+            <p className="text-white max-w-2xl mx-auto">
               El reconocimiento de nuestro trabajo nos motiva a seguir innovando y creando soluciones que impacten
               positivamente la vida de las personas.
             </p>
@@ -123,7 +123,7 @@ export default function ConocenosPage() {
                 </div>
                 <Badge className="bg-yellow-500/20 text-yellow-400 mb-4">2023</Badge>
                 <h3 className="text-xl font-semibold mb-4 text-white">Invention Convention Americas</h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-white mb-4">
                   Ganadores del primer lugar en la categoría de tecnología de asistencia en la prestigiosa Invention
                   Convention Americas 2023.
                 </p>
@@ -145,7 +145,7 @@ export default function ConocenosPage() {
                 </div>
                 <Badge className="bg-blue-500/20 text-blue-400 mb-4">Hackathon</Badge>
                 <h3 className="text-xl font-semibold mb-4 text-white">Ganadores de Hackathon</h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-white mb-4">
                   Primer lugar en hackathon de innovación tecnológica, destacando por nuestra solución integral de
                   movilidad inteligente.
                 </p>
@@ -167,7 +167,7 @@ export default function ConocenosPage() {
                 </div>
                 <Badge className="bg-green-500/20 text-green-400 mb-4">Estatal</Badge>
                 <h3 className="text-xl font-semibold mb-4 text-white">Competencia Estatal</h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-white mb-4">
                   Campeones estatales en competencia de innovación tecnológica, siendo reconocidos por el impacto social
                   de nuestro proyecto.
                 </p>
@@ -189,8 +189,8 @@ export default function ConocenosPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Nuestros Valores</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Nuestros Valores</h2>
+            <p className="text-white max-w-2xl mx-auto">
               Los principios que guían nuestro trabajo y nos impulsan a crear soluciones que realmente marquen la
               diferencia.
             </p>
@@ -207,7 +207,7 @@ export default function ConocenosPage() {
               <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Lightbulb className="w-8 h-8 text-blue-500" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Innovación</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">Innovación</h3>
               <p className="text-gray-400 text-sm">
                 Buscamos constantemente nuevas formas de mejorar la vida de las personas a través de la tecnología.
               </p>
@@ -223,7 +223,7 @@ export default function ConocenosPage() {
               <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-green-500" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Inclusión</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">Inclusión</h3>
               <p className="text-gray-400 text-sm">
                 Diseñamos pensando en la diversidad y la accesibilidad para crear un mundo más equitativo.
               </p>
@@ -239,7 +239,7 @@ export default function ConocenosPage() {
               <div className="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Target className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Excelencia</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">Excelencia</h3>
               <p className="text-gray-400 text-sm">
                 Nos comprometemos con la calidad en cada detalle, desde el diseño hasta la experiencia del usuario.
               </p>
@@ -255,7 +255,7 @@ export default function ConocenosPage() {
               <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Rocket className="w-8 h-8 text-purple-500" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Impacto</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">Impacto</h3>
               <p className="text-gray-400 text-sm">
                 Medimos nuestro éxito por el impacto positivo que generamos en la vida de las personas.
               </p>
@@ -274,8 +274,8 @@ export default function ConocenosPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Nuestra Historia</h2>
-              <p className="text-gray-300 text-lg">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Nuestra Historia</h2>
+              <p className="text-white text-lg">
                 RuedaTec nació de la necesidad de crear soluciones accesibles y sostenibles para la movilidad. Lo que
                 comenzó como un proyecto universitario se ha convertido en una empresa comprometida con la innovación
                 social.
@@ -286,19 +286,19 @@ export default function ConocenosPage() {
               <Card className="bg-white/5 border-white/10 p-8 md:p-12">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div>
-                    <h3 className="text-2xl font-semibold mb-4">El Futuro de la Movilidad</h3>
-                    <p className="text-gray-300 mb-6">
+                    <h3 className="text-2xl font-semibold mb-4 text-white">El Futuro de la Movilidad</h3>
+                    <p className="text-white mb-6">
                       Nuestro equipo multidisciplinario combina experiencia en ingeniería, diseño y tecnología para
                       crear soluciones que no solo funcionen, sino que transformen vidas.
                     </p>
-                    <p className="text-gray-300">
+                    <p className="text-white">
                       Con cada reconocimiento y cada usuario que mejora su calidad de vida, reafirmamos nuestro
                       compromiso de seguir innovando y expandiendo el acceso a la movilidad independiente.
                     </p>
                   </div>
                   <div className="relative">
                     <Image
-                      src="/innovation-award-ceremony.png"
+                      src="https://davidmtz.me//assets/img/43534.jpeg"
                       alt="Equipo RuedaTec en ceremonia de premiación"
                       width={400}
                       height={300}
