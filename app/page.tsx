@@ -51,13 +51,19 @@ export default function Home() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0"
+                onClick={() =>
+                  window.open(
+                    "mailto:yo@davidmtz.me?subject=Apoyo%20a%20RuedaTec&body=Hola,%20me%20interesa%20apoyar%20el%20proyecto%20RuedaTec.",
+                    "_blank",
+                  )
+                }
               >
                 Apoyanos <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white/40 text-white hover:bg-white/10 hover:text-white"
+                className="bg-black border-2 border-white/40 text-white hover:bg-gray-900 hover:border-white/60"
+                onClick={() => (window.location.href = "/conocenos")}
               >
                 Conoce más
               </Button>
@@ -106,15 +112,6 @@ export default function Home() {
               <Card className="bg-white/5 border-white/10 p-8 hover:border-cyan-500/50 transition-all duration-300 h-full flex flex-col">
                 <h3 className="text-xl font-semibold mb-4 text-white">Conoce</h3>
                 <h4 className="text-2xl font-bold mb-4 text-white">Explora lo que creamos</h4>
-                <div className="mb-6">
-                  <Image
-                    src="/wheelchair-innovation.png"
-                    alt="RuedaTec Innovation"
-                    width={300}
-                    height={200}
-                    className="rounded-lg w-full"
-                  />
-                </div>
                 <p className="text-gray-300 mb-4">Historia</p>
                 <p className="text-gray-300 mb-6 flex-grow">Revisa lo que hacemos</p>
                 <Button variant="ghost" className="text-cyan-500 hover:text-cyan-400 p-0 self-start">
@@ -219,8 +216,8 @@ export default function Home() {
               className="relative group overflow-hidden rounded-2xl"
             >
               <Image
-                src="/diverse-team-wheelchair.png"
-                alt="RuedaTec Team"
+                src="/ruedatec-team-photo.jpeg"
+                alt="Equipo RuedaTec con sillas de ruedas"
                 width={600}
                 height={400}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -235,7 +232,7 @@ export default function Home() {
               className="space-y-8"
             >
               <Card className="bg-white/5 border-white/10 p-6">
-                <h3 className="text-xl font-semibold mb-4">Antes de todo...</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Antes de todo...</h3>
                 <p className="text-gray-400">
                   Realizamos un diseño 3D antes que nada en la aplicación de blender para poder darnos una idea sobre lo
                   que podíamos lograr y tener un buen inicio para la construcción
@@ -243,7 +240,7 @@ export default function Home() {
               </Card>
 
               <Card className="bg-white/5 border-white/10 p-6">
-                <h3 className="text-xl font-semibold mb-4">Pensamos en todo.</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Pensamos en todo.</h3>
                 <h4 className="text-lg font-semibold mb-2 text-orange-500">La app.</h4>
                 <p className="text-gray-400">
                   La aplicación de RuedaTec, está siendo creada con la tecnología de Flutter, es la clave para

@@ -47,11 +47,11 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>info@ruedatec.com</span>
+                <span>soporte@ruedatec.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+52 123 456 7890</span>
+                <span>+1 (309) 850-9382</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />

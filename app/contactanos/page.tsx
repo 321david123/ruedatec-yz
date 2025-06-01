@@ -1,27 +1,11 @@
 "use client"
-
-import type React from "react"
-
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle, HeadphonesIcon, User, Check } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, HeadphonesIcon, User, MessageCircle } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 
 export default function ContactanosPage() {
-  const [formSubmitted, setFormSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setFormSubmitted(true)
-    // Here you would normally send the form data to your backend
-  }
-
   return (
     <div className="min-h-screen bg-black text-white">
       <Navigation />
@@ -125,82 +109,7 @@ export default function ContactanosPage() {
           </div>
 
           {/* Contact Form */}
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl font-bold mb-6">Envíanos un mensaje</h2>
-              <p className="text-gray-300 mb-8">
-                ¿Tienes alguna pregunta sobre nuestros productos o necesitas ayuda? Completa el formulario y te
-                responderemos lo antes posible.
-              </p>
-
-              {!formSubmitted ? (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="first-name">Nombre</Label>
-                      <Input id="first-name" required className="bg-white/5 border-white/10 text-white" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="last-name">Apellido</Label>
-                      <Input id="last-name" required className="bg-white/5 border-white/10 text-white" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Correo electrónico</Label>
-                    <Input id="email" type="email" required className="bg-white/5 border-white/10 text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Teléfono (opcional)</Label>
-                    <Input id="phone" type="tel" className="bg-white/5 border-white/10 text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Asunto</Label>
-                    <select id="subject" className="w-full rounded-md bg-white/5 border-white/10 p-3 text-white">
-                      <option value="general">Consulta general</option>
-                      <option value="support">Soporte técnico</option>
-                      <option value="sales">Información de ventas</option>
-                      <option value="partnership">Colaboraciones</option>
-                      <option value="other">Otro</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Mensaje</Label>
-                    <Textarea
-                      id="message"
-                      required
-                      rows={5}
-                      className="bg-white/5 border-white/10 text-white"
-                      placeholder="Cuéntanos cómo podemos ayudarte..."
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
-                  >
-                    Enviar mensaje <Send className="ml-2 w-4 h-4" />
-                  </Button>
-                </form>
-              ) : (
-                <div className="py-12 text-center space-y-6">
-                  <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-                    <Check className="w-10 h-10 text-green-500" />
-                  </div>
-                  <h3 className="text-2xl font-semibold">¡Mensaje enviado!</h3>
-                  <p className="text-gray-300">
-                    Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos dentro de las próximas 24
-                    horas.
-                  </p>
-                  <Button
-                    onClick={() => setFormSubmitted(false)}
-                    variant="outline"
-                    className="border-white/20 hover:bg-white/10"
-                  >
-                    Enviar otro mensaje
-                  </Button>
-                </div>
-              )}
-            </motion.div>
-
+          <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}

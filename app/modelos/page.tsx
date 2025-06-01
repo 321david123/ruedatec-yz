@@ -2,27 +2,18 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { ArrowRight, Battery, Zap, Sun, Smartphone, Check, ChevronRight } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { joinWaitlist } from "./waitlist-action"
 
 // Model data
 const models = [
@@ -65,12 +56,40 @@ const models = [
 
 export default function ModelosPage() {
   const [activeModel, setActiveModel] = useState(models[0])
-  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const formRef1 = useRef<HTMLFormElement>(null)
+  const formRef2 = useRef<HTMLFormElement>(null)
+  const ctaFormRef = useRef<HTMLFormElement>(null)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, formRef: React.RefObject<HTMLFormElement>) => {
     e.preventDefault()
-    setFormSubmitted(true)
-    // Here you would normally send the form data to your backend
+    setIsSubmitting(true)
+    setSubmitError("")
+
+    const formData = new FormData(e.currentTarget)
+
+    try {
+      await joinWaitlist(formData)
+      setSubmitSuccess(true)
+
+      // Reset the form safely
+      if (formRef.current) {
+        formRef.current.reset()
+      }
+
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false)
+      }, 3000)
+    } catch (error) {
+      console.error("Error:", error)
+      setSubmitError("Error al procesar la suscripción. Inténtalo de nuevo.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -119,7 +138,7 @@ export default function ModelosPage() {
               ))}
             </TabsList>
 
-            {models.map((model) => (
+            {models.map((model, index) => (
               <TabsContent key={model.id} value={model.id} className="space-y-12">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <motion.div
@@ -136,72 +155,44 @@ export default function ModelosPage() {
                     </p>
 
                     <div className="space-y-3 mb-8">
-                      {model.features.map((feature, index) => (
-                        <div key={index} className="flex items-start">
+                      {model.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-start">
                           <Check className="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
                           <span>{feature}</span>
                         </div>
                       ))}
                     </div>
 
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0">
-                          Unirse a la lista de espera <ArrowRight className="ml-2 w-4 h-4" />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-md bg-gray-900 border-gray-800">
-                        <DialogHeader>
-                          <DialogTitle>Unirse a la lista de espera</DialogTitle>
-                          <DialogDescription>
-                            Completa el formulario para ser de los primeros en adquirir el modelo {model.name}
-                          </DialogDescription>
-                        </DialogHeader>
-                        {!formSubmitted ? (
-                          <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                              <div className="space-y-2">
-                                <Label htmlFor="first-name">Nombre</Label>
-                                <Input id="first-name" required className="bg-gray-800 border-gray-700" />
-                              </div>
-                              <div className="space-y-2">
-                                <Label htmlFor="last-name">Apellido</Label>
-                                <Input id="last-name" required className="bg-gray-800 border-gray-700" />
-                              </div>
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="email">Correo electrónico</Label>
-                              <Input id="email" type="email" required className="bg-gray-800 border-gray-700" />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="phone">Teléfono</Label>
-                              <Input id="phone" type="tel" className="bg-gray-800 border-gray-700" />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="message">Mensaje (opcional)</Label>
-                              <Textarea id="message" className="bg-gray-800 border-gray-700" />
-                            </div>
-                            <Button
-                              type="submit"
-                              className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
-                            >
-                              Enviar solicitud
-                            </Button>
-                          </form>
-                        ) : (
-                          <div className="py-6 text-center space-y-4">
-                            <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
-                              <Check className="w-8 h-8 text-blue-500" />
-                            </div>
-                            <h3 className="text-xl font-medium">¡Gracias por tu interés!</h3>
-                            <p className="text-gray-400">
-                              Te hemos agregado a nuestra lista de espera. Te contactaremos pronto con más información
-                              sobre el modelo {model.name}.
-                            </p>
-                          </div>
-                        )}
-                      </DialogContent>
-                    </Dialog>
+                    <form
+                      ref={index === 0 ? formRef1 : formRef2}
+                      onSubmit={(e) => handleSubmit(e, index === 0 ? formRef1 : formRef2)}
+                      className="flex gap-2 max-w-md"
+                    >
+                      <Input
+                        type="email"
+                        name="email"
+                        placeholder="tu@email.com"
+                        required
+                        className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
+                      />
+                      <input type="hidden" name="model" value={model.name} />
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 whitespace-nowrap disabled:opacity-50"
+                      >
+                        {isSubmitting ? "Enviando..." : "Lista de espera"} <ArrowRight className="ml-1 w-4 h-4" />
+                      </Button>
+                    </form>
+
+                    {submitSuccess && (
+                      <div className="mt-2 text-green-400 text-sm flex items-center gap-1">
+                        <Check className="w-4 h-4" />
+                        ¡Te has unido a la lista de espera!
+                      </div>
+                    )}
+
+                    {submitError && <div className="mt-2 text-red-400 text-sm">{submitError}</div>}
                   </motion.div>
 
                   <motion.div
@@ -323,67 +314,32 @@ export default function ModelosPage() {
                 <p className="text-gray-300 mb-6">
                   Únete a nuestra lista de espera y sé de los primeros en experimentar la libertad que ofrece RuedaTec.
                 </p>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0">
-                      Unirse ahora <ChevronRight className="ml-1 w-4 h-4" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-md bg-gray-900 border-gray-800">
-                    <DialogHeader>
-                      <DialogTitle>Unirse a la lista de espera</DialogTitle>
-                      <DialogDescription>
-                        Completa el formulario para ser de los primeros en adquirir un modelo RuedaTec
-                      </DialogDescription>
-                    </DialogHeader>
-                    {!formSubmitted ? (
-                      <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="first-name-cta">Nombre</Label>
-                            <Input id="first-name-cta" required className="bg-gray-800 border-gray-700" />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="last-name-cta">Apellido</Label>
-                            <Input id="last-name-cta" required className="bg-gray-800 border-gray-700" />
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="email-cta">Correo electrónico</Label>
-                          <Input id="email-cta" type="email" required className="bg-gray-800 border-gray-700" />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="phone-cta">Teléfono</Label>
-                          <Input id="phone-cta" type="tel" className="bg-gray-800 border-gray-700" />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="model-preference">Modelo de interés</Label>
-                          <select id="model-preference" className="w-full rounded-md bg-gray-800 border-gray-700 p-2">
-                            <option value="any">Cualquier modelo</option>
-                            <option value="basic">RuedaTec Básico</option>
-                            <option value="solar">RuedaTec Solar</option>
-                          </select>
-                        </div>
-                        <Button
-                          type="submit"
-                          className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
-                        >
-                          Enviar solicitud
-                        </Button>
-                      </form>
-                    ) : (
-                      <div className="py-6 text-center space-y-4">
-                        <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
-                          <Check className="w-8 h-8 text-blue-500" />
-                        </div>
-                        <h3 className="text-xl font-medium">¡Gracias por tu interés!</h3>
-                        <p className="text-gray-400">
-                          Te hemos agregado a nuestra lista de espera. Te contactaremos pronto con más información.
-                        </p>
-                      </div>
-                    )}
-                  </DialogContent>
-                </Dialog>
+                <form ref={ctaFormRef} onSubmit={(e) => handleSubmit(e, ctaFormRef)} className="flex gap-2 max-w-md">
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="tu@email.com"
+                    required
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
+                  />
+                  <input type="hidden" name="model" value="General" />
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 whitespace-nowrap disabled:opacity-50"
+                  >
+                    {isSubmitting ? "Enviando..." : "Lista de espera"} <ChevronRight className="ml-1 w-4 h-4" />
+                  </Button>
+                </form>
+
+                {submitSuccess && (
+                  <div className="mt-2 text-green-400 text-sm flex items-center gap-1">
+                    <Check className="w-4 h-4" />
+                    ¡Te has unido a la lista de espera!
+                  </div>
+                )}
+
+                {submitError && <div className="mt-2 text-red-400 text-sm">{submitError}</div>}
               </div>
               <div className="relative h-64 md:h-auto">
                 <Image
