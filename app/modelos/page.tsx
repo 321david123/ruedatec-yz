@@ -308,47 +308,41 @@ export default function ModelosPage() {
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <Card className="bg-white/5 border-white/10 p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="text-3xl font-bold mb-4 text-white">¿Listo para transformar tu movilidad?</h2>
-                <p className="text-gray-300 mb-6">
-                  Únete a nuestra lista de espera y sé de los primeros en experimentar la libertad que ofrece RuedaTec.
-                </p>
-                <form ref={ctaFormRef} onSubmit={(e) => handleSubmit(e, ctaFormRef)} className="flex gap-2 max-w-md">
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="tu@email.com"
-                    required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
-                  />
-                  <input type="hidden" name="model" value="General" />
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 whitespace-nowrap disabled:opacity-50"
-                  >
-                    {isSubmitting ? "Enviando..." : "Lista de espera"} <ChevronRight className="ml-1 w-4 h-4" />
-                  </Button>
-                </form>
-
-                {submitSuccess && (
-                  <div className="mt-2 text-green-400 text-sm flex items-center gap-1">
-                    <Check className="w-4 h-4" />
-                    ¡Te has unido a la lista de espera!
-                  </div>
-                )}
-
-                {submitError && <div className="mt-2 text-red-400 text-sm">{submitError}</div>}
-              </div>
-              <div className="relative h-64 md:h-auto">
-                <Image
-                  src="/happy-wheelchair-user.png"
-                  alt="Persona usando RuedaTec"
-                  fill
-                  className="object-cover rounded-xl"
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold mb-4 text-white">¿Listo para transformar tu movilidad?</h2>
+              <p className="text-gray-300 mb-6">
+                Únete a nuestra lista de espera y sé de los primeros en experimentar la libertad que ofrece RuedaTec.
+              </p>
+              <form
+                ref={ctaFormRef}
+                onSubmit={(e) => handleSubmit(e, ctaFormRef)}
+                className="flex gap-2 max-w-md mx-auto"
+              >
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="tu@email.com"
+                  required
+                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
                 />
-              </div>
+                <input type="hidden" name="model" value="General" />
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white border-0 whitespace-nowrap disabled:opacity-50"
+                >
+                  {isSubmitting ? "Enviando..." : "Lista de espera"} <ChevronRight className="ml-1 w-4 h-4" />
+                </Button>
+              </form>
+
+              {submitSuccess && (
+                <div className="mt-2 text-green-400 text-sm flex items-center justify-center gap-1">
+                  <Check className="w-4 h-4" />
+                  ¡Te has unido a la lista de espera!
+                </div>
+              )}
+
+              {submitError && <div className="mt-2 text-red-400 text-sm text-center">{submitError}</div>}
             </div>
           </Card>
         </div>
