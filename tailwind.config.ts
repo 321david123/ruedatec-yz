@@ -114,6 +114,15 @@ const config: Config = {
           "0%": { transform: "scale(0.9)", opacity: "0.6" },
           "100%": { transform: "scale(1.6)", opacity: "0" },
         },
+        // Entradas en CSS puro: no dependen de que cargue el JavaScript
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "nav-in": {
+          from: { opacity: "0", transform: "translateY(-80px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -127,6 +136,8 @@ const config: Config = {
         "pulse-ring": "pulse-ring 2.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite",
         "spin-slow": "spin 28s linear infinite",
         "spin-slower": "spin 60s linear infinite",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98) both",
+        "nav-in": "nav-in 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98) both",
       },
     },
   },

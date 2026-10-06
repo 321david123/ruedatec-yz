@@ -45,11 +45,8 @@ export default function Navigation() {
       />
 
       <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
-        <motion.nav
-          initial={{ y: -80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className={`flex w-full max-w-5xl items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 ${
+        <nav
+          className={`flex w-full max-w-5xl animate-nav-in items-center justify-between rounded-2xl px-5 py-3 transition-all duration-500 ${
             scrolled
               ? "glass shadow-[0_8px_40px_rgba(0,0,0,0.45)]"
               : "border border-transparent bg-transparent"
@@ -111,7 +108,7 @@ export default function Navigation() {
           >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-        </motion.nav>
+        </nav>
       </header>
 
       {/* Menú móvil a pantalla completa */}
