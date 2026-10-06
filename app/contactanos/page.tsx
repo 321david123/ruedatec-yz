@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { useState } from "react"
-import { motion } from "framer-motion"
 import {
   Mail,
   Phone,
@@ -87,7 +86,7 @@ function ContactForm() {
   }
 
   const inputClasses =
-    "w-full rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-3.5 text-sm text-white placeholder:text-zinc-500 focus:border-amber-400/60 focus:outline-none focus:ring-2 focus:ring-amber-400/20 transition-all"
+    "w-full rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-3.5 text-base text-white placeholder:text-zinc-500 focus:border-amber-400/60 focus:outline-none focus:ring-2 focus:ring-amber-400/20 transition-all sm:text-sm"
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -151,7 +150,7 @@ export default function ContactanosPage() {
       <section className="relative px-6 pb-20 pt-44">
         <Aurora />
         <div className="container relative z-10 mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <div className="animate-fade-up">
             <p className="inline-flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-amber-300 md:text-xs">
               <span className="h-px w-10 bg-gradient-to-r from-transparent to-amber-400/70" />
               Hablemos
@@ -164,7 +163,7 @@ export default function ContactanosPage() {
               ¿Dudas, ideas, ganas de apoyar? Ponte en contacto y descubre cómo RuedaTec puede
               transformar tu movilidad.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

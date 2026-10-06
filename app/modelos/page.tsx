@@ -128,7 +128,7 @@ function WaitlistForm({ model, accent = "amber" }: { model: string; accent?: "am
           name="email"
           required
           placeholder="tu@email.com"
-          className="h-12 flex-grow rounded-full border border-white/15 bg-white/[0.04] px-5 text-sm text-white placeholder:text-zinc-500 focus:border-amber-400/60 focus:outline-none focus:ring-2 focus:ring-amber-400/20"
+          className="h-12 w-full min-w-0 flex-grow rounded-full border border-white/15 bg-white/[0.04] px-5 text-base text-white placeholder:text-zinc-500 focus:border-amber-400/60 focus:outline-none focus:ring-2 focus:ring-amber-400/20 sm:text-sm"
         />
         <input type="hidden" name="model" value={model} />
         <button
@@ -165,7 +165,7 @@ export default function ModelosPage() {
       <section className="relative px-6 pb-16 pt-44">
         <Aurora />
         <div className="container relative z-10 mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <div className="animate-fade-up">
             <p className="inline-flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-amber-300 md:text-xs">
               <span className="h-px w-10 bg-gradient-to-r from-transparent to-amber-400/70" />
               Sistemas de conversión
@@ -178,7 +178,7 @@ export default function ModelosPage() {
               Dos sistemas, una misma misión: convertir tu silla de ruedas manual en eléctrica,
               inteligente y tuya.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -265,24 +265,24 @@ export default function ModelosPage() {
 
           <Reveal className="mt-14" direction="scale">
             <div className="glass mx-auto max-w-4xl overflow-hidden rounded-3xl">
-              <div className="grid grid-cols-3 border-b border-white/10 bg-white/[0.03]">
-                <div className="p-5 text-sm font-semibold uppercase tracking-wider text-zinc-500">
-                  Característica
+              <div className="grid grid-cols-[1.4fr_1fr_1fr] border-b border-white/10 bg-white/[0.03] sm:grid-cols-3">
+                <div className="px-3 py-4 text-sm font-semibold uppercase tracking-wider text-zinc-500 sm:p-5">
+                  <span className="sr-only sm:not-sr-only">Característica</span>
                 </div>
-                <div className="font-display p-5 text-center text-base font-bold text-cyan-300">Básico</div>
-                <div className="font-display flex items-center justify-center gap-1.5 p-5 text-center text-base font-bold text-amber-300">
-                  <Sun className="h-4 w-4" /> Solar
+                <div className="font-display px-2 py-4 text-center text-sm font-bold text-cyan-300 sm:p-5 sm:text-base">Básico</div>
+                <div className="font-display flex items-center justify-center gap-1 px-2 py-4 text-center text-sm font-bold text-amber-300 sm:gap-1.5 sm:p-5 sm:text-base">
+                  <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Solar
                 </div>
               </div>
               {comparison.map((row, i) => (
                 <div
                   key={row.label}
-                  className={`grid grid-cols-3 items-center ${
+                  className={`grid grid-cols-[1.4fr_1fr_1fr] items-center sm:grid-cols-3 ${
                     i % 2 === 1 ? "bg-white/[0.02]" : ""
                   } ${i === comparison.length - 1 ? "border-t border-amber-400/20 bg-amber-400/[0.04]" : ""}`}
                 >
-                  <div className="p-5 text-sm text-zinc-300">{row.label}</div>
-                  <div className="p-5 text-center text-sm font-medium text-white">
+                  <div className="px-3 py-4 text-xs text-zinc-300 sm:p-5 sm:text-sm">{row.label}</div>
+                  <div className="px-2 py-4 text-center text-xs font-medium text-white sm:p-5 sm:text-sm">
                     {typeof row.basico === "boolean" ? (
                       row.basico ? (
                         <Check className="mx-auto h-5 w-5 text-cyan-400" />
@@ -293,7 +293,7 @@ export default function ModelosPage() {
                       row.basico
                     )}
                   </div>
-                  <div className="p-5 text-center text-sm font-medium text-white">
+                  <div className="px-2 py-4 text-center text-xs font-medium text-white sm:p-5 sm:text-sm">
                     {typeof row.solar === "boolean" ? (
                       row.solar ? (
                         <Check className="mx-auto h-5 w-5 text-amber-400" />
@@ -349,7 +349,7 @@ export default function ModelosPage() {
         <div className="container mx-auto">
           <Reveal direction="scale">
             <div className="gradient-border relative overflow-hidden rounded-[2.5rem]">
-              <div className="relative rounded-[2.5rem] bg-night-950 px-8 py-16 md:px-16 md:py-20">
+              <div className="relative rounded-[2.5rem] bg-night-950 px-6 py-14 sm:px-8 sm:py-16 md:px-16 md:py-20">
                 <Aurora intensity="low" />
                 <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
                   <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400/10">
