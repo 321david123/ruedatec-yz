@@ -128,7 +128,7 @@ export default function ConocenosPage() {
       <section className="relative px-6 pb-20 pt-44">
         <Aurora />
         <div className="container relative z-10 mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <div className="animate-fade-up">
             <p className="inline-flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-amber-300 md:text-xs">
               <span className="h-px w-10 bg-gradient-to-r from-transparent to-amber-400/70" />
               El equipo
@@ -141,7 +141,7 @@ export default function ConocenosPage() {
               Un equipo multidisciplinario apasionado por la innovación y la inclusión,
               comprometido con transformar la movilidad a través de la tecnología.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -173,7 +173,7 @@ export default function ConocenosPage() {
                   { value: 2, suffix: "", label: "modelos en desarrollo" },
                   { value: 100, suffix: " %", label: "orientado al usuario" },
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-night-950/90 px-4 py-5 text-center">
+                  <div key={stat.label} className="bg-night-950/90 px-2 py-5 text-center sm:px-4">
                     <p className="font-display text-2xl font-bold text-white md:text-3xl">
                       <Counter value={stat.value} suffix={stat.suffix} />
                     </p>
@@ -331,7 +331,7 @@ export default function ConocenosPage() {
         <div className="container mx-auto">
           <Reveal direction="scale">
             <div className="gradient-border relative overflow-hidden rounded-[2.5rem]">
-              <div className="relative rounded-[2.5rem] bg-night-950 px-8 py-16 text-center md:px-16 md:py-24">
+              <div className="relative rounded-[2.5rem] bg-night-950 px-6 py-14 text-center sm:px-8 sm:py-16 md:px-16 md:py-24">
                 <Aurora intensity="low" />
                 <div className="relative z-10 mx-auto max-w-3xl">
                   <Quote className="mx-auto h-10 w-10 text-amber-400/50" />

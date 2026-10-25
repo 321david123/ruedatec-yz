@@ -3,8 +3,11 @@
 import { useEffect, useRef } from "react"
 import { useInView, useMotionValue, useSpring } from "framer-motion"
 
+const format = (n: number) => Intl.NumberFormat("es-MX").format(Math.round(n))
+
 /**
  * Número que cuenta de 0 al valor objetivo cuando entra en pantalla.
+ * El servidor entrega el valor final, para que se lea bien aun sin JavaScript.
  */
 export default function Counter({
   value,
@@ -27,11 +30,10 @@ export default function Counter({
   }, [inView, value, motionValue])
 
   useEffect(() => {
+    if (ref.current) ref.current.textContent = `${prefix}${format(spring.get())}${suffix}`
     const unsubscribe = spring.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent = `${prefix}${Intl.NumberFormat("es-MX").format(
-          Math.round(latest),
-        )}${suffix}`
+        ref.current.textContent = `${prefix}${format(latest)}${suffix}`
       }
     })
     return unsubscribe
@@ -39,7 +41,7 @@ export default function Counter({
 
   return (
     <span ref={ref} className={className}>
-      {prefix}0{suffix}
+      {`${prefix}${format(value)}${suffix}`}
     </span>
   )
 }

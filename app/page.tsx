@@ -27,6 +27,7 @@ import Marquee from "@/components/fx/marquee"
 import Counter from "@/components/fx/counter"
 import JourneyLine from "@/components/fx/journey-line"
 import SectionHeading from "@/components/fx/section-heading"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const SUPPORT_MAILTO =
   "mailto:yo@davidmtz.me?subject=Apoyo%20a%20RuedaTec&body=Hola,%20me%20interesa%20apoyar%20el%20proyecto%20RuedaTec."
@@ -128,8 +129,11 @@ const testimonials = [
 
 export default function Home() {
   const { scrollY } = useScroll()
-  const heroY = useTransform(scrollY, [0, 600], [0, 120])
-  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0])
+  // En teléfonos el hero es más alto que la pantalla: desvanecerlo al hacer
+  // scroll escondería las estadísticas y botones mientras se leen.
+  const isMobile = useIsMobile()
+  const heroY = useTransform(scrollY, [0, 600], [0, isMobile ? 0 : 120])
+  const heroOpacity = useTransform(scrollY, [0, 500], [1, isMobile ? 1 : 0])
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -141,46 +145,26 @@ export default function Home() {
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container relative z-10 mx-auto">
           <div className="max-w-4xl">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-amber-300 md:text-xs"
-            >
-              <Trophy className="h-4 w-4" />
+            <p className="flex animate-fade-up items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-amber-300 md:text-xs">
+              <Trophy className="h-4 w-4 shrink-0" />
               Ganadores · Invention Convention Americas 2023
-            </motion.p>
+            </p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="font-display mt-7 text-balance text-6xl font-bold leading-[0.95] tracking-tight text-white md:text-8xl lg:text-9xl"
-            >
+            <h1 className="font-display mt-7 animate-fade-up text-balance text-[min(14vw,3.75rem)] font-bold leading-[0.95] tracking-tight text-white [animation-delay:150ms] md:text-8xl lg:text-9xl">
               La movilidad,
               <br />
               <span className="text-gradient-solar">reinventada.</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-zinc-400 md:text-xl"
-            >
+            <p className="mt-8 max-w-2xl animate-fade-up text-balance text-lg leading-relaxed text-zinc-400 [animation-delay:300ms] md:text-xl">
               Convertimos cualquier silla de ruedas manual en un sistema{" "}
               <span className="font-semibold text-white">eléctrico</span>,{" "}
               <span className="font-semibold text-amber-300">solar</span> e{" "}
               <span className="font-semibold text-cyan-300">inteligente</span>. Independencia
               real a través de la innovación, hecho en México.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.45 }}
-              className="mt-10 flex flex-col gap-4 sm:flex-row"
-            >
+            <div className="mt-10 flex animate-fade-up flex-col gap-4 [animation-delay:450ms] sm:flex-row">
               <Link
                 href="/modelos"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-8 py-4 text-base font-semibold text-black transition-all duration-300 hover:shadow-[0_0_45px_rgba(251,191,36,0.5)]"
@@ -195,15 +179,10 @@ export default function Home() {
                 Apoya el proyecto
                 <ArrowUpRight className="h-5 w-5" />
               </a>
-            </motion.div>
+            </div>
 
             {/* Estadísticas */}
-            <motion.dl
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-20 flex flex-wrap gap-x-12 gap-y-8"
-            >
+            <dl className="mt-20 grid animate-fade-up grid-cols-2 gap-x-6 gap-y-8 [animation-delay:600ms] sm:flex sm:flex-wrap sm:gap-x-12">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col border-l border-white/15 pl-5">
                   <dd className="font-display text-3xl font-bold text-white md:text-4xl">
@@ -212,7 +191,7 @@ export default function Home() {
                   <dt className="mt-1 max-w-[10rem] text-xs leading-snug text-zinc-500">{stat.label}</dt>
                 </div>
               ))}
-            </motion.dl>
+            </dl>
           </div>
         </motion.div>
 
@@ -418,8 +397,8 @@ export default function Home() {
               {/* Modelo Básico */}
               <Reveal direction="left">
                 <SpotlightCard className="h-full" spotColor="rgba(34, 211, 238, 0.08)">
-                  <div className="flex h-full flex-col p-8 md:p-10">
-                    <div className="flex items-start justify-between">
+                  <div className="flex h-full flex-col p-6 sm:p-8 md:p-10">
+                    <div className="flex flex-wrap items-start justify-between gap-y-2 sm:flex-nowrap">
                       <div>
                         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
                           Movilidad accesible
@@ -468,8 +447,8 @@ export default function Home() {
                     className="h-full border-transparent bg-gradient-to-b from-amber-400/[0.06] to-transparent"
                     spotColor="rgba(251, 191, 36, 0.10)"
                   >
-                    <div className="flex h-full flex-col p-8 md:p-10">
-                      <div className="flex items-start justify-between">
+                    <div className="flex h-full flex-col p-6 sm:p-8 md:p-10">
+                      <div className="flex flex-wrap items-start justify-between gap-y-2 sm:flex-nowrap">
                         <div>
                           <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
                             <Sun className="h-3.5 w-3.5" /> El más avanzado
@@ -604,7 +583,7 @@ export default function Home() {
         <div className="container mx-auto">
           <Reveal direction="scale">
             <div className="gradient-border relative overflow-hidden rounded-[2.5rem]">
-              <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-night-900 via-night-950 to-night-950 px-8 py-20 text-center md:px-16 md:py-28">
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-night-900 via-night-950 to-night-950 px-6 py-16 text-center sm:px-8 sm:py-20 md:px-16 md:py-28">
                 <Aurora />
 
                 <div className="relative z-10 mx-auto max-w-3xl">
